@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Muli', sans-serif;
+}
+
+button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: none;
+  color: grey;
+  border-color: none;
+  text-align: center;
+  font-size: 24px;
+  width: 30vw;
+  height: 10vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  border-radius: 4px;
+}
+/*# sourceMappingURL=familyStyle.css.map */
