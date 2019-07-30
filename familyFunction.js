@@ -23,18 +23,25 @@ var myFather = new Person("Peter", "Nulens", 57, "Brown");
 var myMother = new Person("Guadelupe", "Acedo", 52, "Grey");
 var myCoach = new Person("Shutsen", " ", 33, "Brown");
 
+
+const targetFamilyButtons = document.getElementsByClassName("family-buttons")[0];
+
 const personalButton = document.getElementById("personal-button");
 const familyButton = document.getElementById("family-button");
 const displayScreen = document.getElementById("screen");
 const personalScreenContent = document.getElementById("personal-content");
 const familyScreenContent = document.getElementById("family-content");
 var createdFamilyButtons = false;
-
+// About Me button 
 personalButton.addEventListener("click", function () {
+    console.log(targetFamilyButtons);
+    personalScreenContent.style.display = "block";
+    familyScreenContent.style.display = "none";
     personalScreenContent.innerHTML = `Hi, I am ${aboutMe.name}, and I am ${aboutMe.age} years old.`
 })
 
-
+// Adding family-buttons on click 
+// 
 familyButton.addEventListener("click", function () {
     if (createdFamilyButtons) {
         return;
@@ -74,9 +81,10 @@ familyButton.addEventListener("click", function () {
     div.appendChild(coachButton);
 
     displayScreen.insertBefore(div, displayScreen.childNodes[0]);
-
-    createdFamilyButtons ;
-})
+    personalScreenContent.style.display = "none";
+    familyScreenContent.style.display = "block";
+    createdFamilyButtons = true;
+});
 
 /**
  * person = Object
@@ -93,32 +101,8 @@ function showContent(person, relation) {
     p.appendChild(content);
     familyScreenContent.appendChild(p);
 
-    familyScreenContent.style.display = "block";
+   
 }
-
-// Make BUTTONS toggle 
-function houdini () {
-    if (personalScreenContent.style.display === "none") {
-      personalScreenContent.style.display = "block";
-    } else {
-      personalScreenContent.style.display = "none";
-    }
-}
-
-function buttonToggle(button) {
-    var x = button.id;
-    switch (x) {
-        case 'personal-button':
-            houdini(x);
-            break;
-        case 'family-button':
-            houdini(x);
-            break;
-        default:
-            return false;
-    }
-}
-
 
 // var btn = document.createElement("BUTTON");   // Create a <button> element
 // btn.innerHTML = "CLICK ME";                   // Insert text
