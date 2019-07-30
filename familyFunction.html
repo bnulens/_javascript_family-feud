@@ -9,17 +9,14 @@
     <title>Family Feud</title>
 </head>
 <body>
-    <div class="container" type="container">
-        <button id="personalButton" onclick="familyToggle(this)">About Me</button>
-            <div id="section-one"></div>
-        <button id="familyButton" onclick="familyToggle(this)">My Family</button>
-        <div id="section-two"></div>
-        <ul id="family-members">
-            <li id="father"><button id="fatherButton" onclick="familyToggle(this)">my father</button></li>
-            <li id="mother"><button id="motherButton" onclick="familyToggle(this)">my mother</button></li>
-            <li id="coach"><button id="coachButton" onclick="familyToggle(this)">my coach</button></li>
-        </ul>
-        <div id="section-three"></div>
+    <div id="family-card">
+        <div class="button-group" type="container">
+            <button id="personal-button" onclick="buttonToggle(this)">About Me</button>
+            <button id="family-button" onclick="buttonToggle(this)">My Family</button>
+        </div>
+        <div id= "screen" type="display">
+            <ul id="list"></ul>
+        </div>
     </div>
 </body>
 <script src="familyFunction.js"></script>

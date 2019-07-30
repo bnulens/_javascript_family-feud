@@ -4,23 +4,49 @@
     font-family: 'Muli', sans-serif;
 }
 
-// body {
-//     background-image: linear-gradient(#555555,#111111);
-//     background-repeat: none;
-// }
+ul li {
+    text-decoration: none;
+}
 
 button {
+    background-color: transparent;
+    color: rgb(66, 66, 66);
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    width: 18vw;
+    height: 8vh;
+    border-radius: 4px;
+}
+
+#family-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    width: 50vw;
+    margin-top: 25vh;
+    background-color: rgb(255, 170, 121);
+    border-radius: 10px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    background-color: none;
-    color: grey;
-    border-color: none;
-    text-align: center;
-    font-size: 24px;
-    width: 30vw;
-    height: 10vh;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    border-radius: 4px;
+    position: relative;
+    background-color: rgb(255, 156, 70);
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#screen {
+    display: block;
+    align-items: center;
+    width: 40vw;
+    height: 32vh;
+    padding: 10px;
+    margin-top: 20px;
+    color:white;
 }
