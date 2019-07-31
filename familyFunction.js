@@ -6,8 +6,11 @@ var aboutMe = {
     gender: "Male",
     favorite_food: "Chicken Curry",
     favorite_series: ["Chernobyl","Mad Men", "Black Mirror"],
-    favorite_movies: ["Tora Tora Tora", "Black Cat, White Cat"],
-    single: false
+    favorite_movies: ["Tora Tora Tora", "Black Cat, White Cat", 1, 2, 3, 4, 5],
+    single: false,
+    getFirstTwoFavouriteMovies: function (number) {
+        return aboutMe.favorite_movies.splice(0, number);
+    }
 };
 
 // Section Two 
@@ -22,9 +25,8 @@ function Person(first, last, age, eye) {
 var myFather = new Person("Peter", "Nulens", 57, "Brown");
 var myMother = new Person("Guadelupe", "Acedo", 52, "Grey");
 var myCoach = new Person("Shutsen", " ", 33, "Brown");
-
-
-const targetFamilyButtons = document.getElementsByClassName("family-buttons")[0];
+var myGirlfiend = new Person("Veronica", "Martchenko", 19, "Blue");
+var myOmi = new Person("Jacqueline", "Dreesen", 88, "Brown");
 
 const personalButton = document.getElementById("personal-button");
 const familyButton = document.getElementById("family-button");
@@ -34,7 +36,12 @@ const familyScreenContent = document.getElementById("family-content");
 var createdFamilyButtons = false;
 // About Me button 
 personalButton.addEventListener("click", function () {
-    console.log(targetFamilyButtons);
+    console.log(aboutMe.getFirstTwoFavouriteMovies(5))
+    const targetFamilyButtons = document.getElementsByClassName("family-buttons")[0];
+    if (targetFamilyButtons) {
+        targetFamilyButtons.style.display = "none";
+    }
+
     personalScreenContent.style.display = "block";
     familyScreenContent.style.display = "none";
     personalScreenContent.innerHTML = `Hi, I am ${aboutMe.name}, and I am ${aboutMe.age} years old.`
@@ -43,6 +50,14 @@ personalButton.addEventListener("click", function () {
 // Adding family-buttons on click 
 // 
 familyButton.addEventListener("click", function () {
+    const targetFamilyButtons = document.getElementsByClassName("family-buttons")[0];
+    if (targetFamilyButtons) {
+        targetFamilyButtons.style.display = "block";
+    }
+
+    personalScreenContent.style.display = "none";
+    familyScreenContent.style.display = "block";
+
     if (createdFamilyButtons) {
         return;
     }
@@ -50,41 +65,41 @@ familyButton.addEventListener("click", function () {
     var div = document.createElement("div");
     div.setAttribute("class","family-buttons");
 
-    var fatherButton = document.createElement("button");
-    var motherButton = document.createElement("button");
-    var coachButton = document.createElement("button");
-    
-    fatherButton.addEventListener("click", function () {
-        return showContent(myFather, 'father');
-    })
-    motherButton.addEventListener("click", function () {
-        return showContent(myMother, 'mother');
-    })
-    coachButton.addEventListener("click", function () {
-        return showContent(myCoach, 'coach');
-    })
-    
-    const fatherText = document.createTextNode("Father info");
-    const motherText = document.createTextNode("Mother info");
-    const coachText = document.createTextNode("Coach info");
+    const relatives = [
+        { relation: 'father', info: myFather },
+        { relation: 'mother', info: myMother },
+        { relation: 'coach', info: myCoach },
+        { relation: 'girlfriend', info: myGirlfiend },
+        { relation: 'grandmother', info: myOmi }
+    ]
 
-    fatherButton.appendChild(fatherText);
-    motherButton.appendChild(motherText);
-    coachButton.appendChild(coachText);
-
-    fatherButton.setAttribute("id","father-button");
-    motherButton.setAttribute("id","mother-button");
-    coachButton.setAttribute("id","coach-button");
-
-    div.appendChild(fatherButton);
-    div.appendChild(motherButton);
-    div.appendChild(coachButton);
+    makeMeMyButtons(relatives, div)
 
     displayScreen.insertBefore(div, displayScreen.childNodes[0]);
     personalScreenContent.style.display = "none";
     familyScreenContent.style.display = "block";
     createdFamilyButtons = true;
 });
+
+function makeMeMyButtons(totaalAndereNaamMaarIsDezelfdeArray, div) {
+    for (let i = 0; i < totaalAndereNaamMaarIsDezelfdeArray.length; i++) {
+        const relative = totaalAndereNaamMaarIsDezelfdeArray[i]; // { relation: 'father', info: myFather } (eerste cycle), dan volgend object in array, volgend object...
+        
+        var button = document.createElement("button");
+
+        button.addEventListener("click", function () {
+            return showContent(relative.info, relative.relation);
+        })
+
+        const text = document.createTextNode(`${relative.relation} info`);
+
+        button.appendChild(text);
+
+        button.setAttribute("id", `${relative.relation}-button`);
+
+        div.appendChild(button);
+    }
+}
 
 /**
  * person = Object
